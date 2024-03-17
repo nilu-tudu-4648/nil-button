@@ -1,6 +1,6 @@
 {
   "name": "react-native-nilbutton",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Library for handling device information in React Native.",
   "type": "module",
   "scripts": {
