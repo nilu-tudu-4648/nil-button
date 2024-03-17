@@ -1,4 +1,22 @@
 import DeviceInfo from 'react-native-device-info';
+import { View, TouchableWithoutFeedback ,Keyboard} from 'react-native';
+
+
+export function captureKeyboardEvents(callback) {
+  const keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', (event) => {
+    callback('keyboardDidShow', event);
+  });
+
+  const keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', (event) => {
+    callback('keyboardDidHide', event);
+  });
+
+  // Return a cleanup function to remove the event listeners when no longer needed
+  return () => {
+    keyboardDidShowListener.remove();
+    keyboardDidHideListener.remove();
+  };
+}
 
 export async function getDeviceInfo() {
   try {
@@ -64,4 +82,12 @@ export async function getDeviceInfo() {
     console.error('Error retrieving device information:', error);
     throw error; 
   }
+}
+
+export function captureTouchEvents(callback) {
+  return (
+    <TouchableWithoutFeedback onPress={(event) => callback('onPress', event)}>
+      <View />
+    </TouchableWithoutFeedback>
+  );
 }
