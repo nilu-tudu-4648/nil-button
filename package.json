@@ -1,6 +1,6 @@
 {
   "name": "react-native-nilbutton",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Library for handling device information in React Native.",
   "main": "RaptorXMob.js",
   "type": "module",
