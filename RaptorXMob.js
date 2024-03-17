@@ -62,6 +62,6 @@ export async function getDeviceInfo() {
     };
   } catch (error) {
     console.error('Error retrieving device information:', error);
-    throw error; // Rethrow the error for handling in the calling code
+    throw error; 
   }
 }
