@@ -1,0 +1,17 @@
+{
+  "name": "react-native-nilbutton",
+  "version": "1.0.3",
+  "description": "Testing button",
+  "main": "RaptorXMob.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "nilesh nilu",
+  "license": "ISC",
+  "peerDependencies": {
+    "react": "18.2.0",
+    "react-native": "0.73.6",
+    "react-native-device-info": "^10.13.1"
+  }
+}
