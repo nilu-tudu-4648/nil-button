@@ -1,6 +1,6 @@
 import DeviceInfo from 'react-native-device-info';
 import { Keyboard, TouchableWithoutFeedback } from 'react-native';
-import * as RNLocalize from 'react-native-localize';
+// import * as RNLocalize from 'react-native-localize';
 
 export function captureKeyboardEvents(callback) {
   const keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', (event) => {
@@ -87,7 +87,7 @@ export async function getDeviceInfo() {
         version,
         readableVersion,
       },
-      localLanguage,
+      // localLanguage,
       
     };
   } catch (error) {
