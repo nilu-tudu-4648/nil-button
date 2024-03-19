@@ -9,7 +9,7 @@
   },
   "author": "nilesh nilu",
   "license": "ISC",
-  "peerDependencies": {
+  "dependencies": {
     "react": "18.2.0",
     "react-native": "0.73.6",
     "react-native-device-info": "^10.13.1"
