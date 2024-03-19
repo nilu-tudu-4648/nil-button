@@ -3,7 +3,6 @@ import axios from "axios";
 
 export async function getDeviceInfo() {
   try {
-
     const uniqueId = await getUniqueId();
     return { uniqueId };
   } catch (error) {
