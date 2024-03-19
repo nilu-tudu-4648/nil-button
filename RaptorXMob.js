@@ -55,7 +55,7 @@ export async function getDeviceInfo() {
     const version = DeviceInfo.getVersion();
     const readableVersion = DeviceInfo.getReadableVersion();
   // local language
-  const localLanguage = RNLocalize.getLocales()[0].languageCode;
+  // const localLanguage = RNLocalize.getLocales()[0].languageCode;
 
     return {
       deviceInfo: {
