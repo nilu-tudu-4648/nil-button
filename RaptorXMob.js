@@ -1,95 +1,25 @@
-import { getUniqueId, getManufacturer } from 'react-native-device-info';
-import { Keyboard, TouchableWithoutFeedback } from 'react-native';
-
-export function captureKeyboardEvents(callback) {
-  const keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', (event) => {
-    callback('keyboardDidShow', event);
-  });
-
-  const keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', (event) => {
-    callback('keyboardDidHide', event);
-  });
-
-  // Return a cleanup function to remove the event listeners when no longer needed
-  return () => {
-    keyboardDidShowListener.remove();
-    keyboardDidHideListener.remove();
-  };
-}
-
-export function captureTouchEvents(callback) {
-  return (
-    <TouchableWithoutFeedback onPress={(event) => callback('onPress', event)}>
-      <View />
-    </TouchableWithoutFeedback>
-  );
-}
+import { getUniqueId, getManufacturer } from "react-native-device-info";
+import axios from "axios";
 
 export async function getDeviceInfo() {
   try {
-    const uniqueId = await getUniqueId()
-    const androidId = await getAndroidId()()
-    return {uniqueId,androidId}
-    // const uniqueId = await DeviceInfo.getUniqueId();
-    // const manufacturer = await DeviceInfo.getManufacturer();
-    // const carrier = await DeviceInfo.getCarrier();
-    // const brand = DeviceInfo.getBrand();
-    // const model = DeviceInfo.getModel();
-    // const emulator = DeviceInfo.isEmulator();
-    // const deviceId = DeviceInfo.getDeviceId();
-    // const systemName = DeviceInfo.getSystemName();
-    // const systemVersion = DeviceInfo.getSystemVersion();
-    // const buildId = await DeviceInfo.getBuildId();
-    // const ipAddress = await DeviceInfo.getIpAddress();
-    // const instanceId = await DeviceInfo.getInstanceId();
-    // const deviceName = await DeviceInfo.getDeviceName();
-    // const userAgent = await DeviceInfo.getUserAgent();
-    // const apiLevel = await DeviceInfo.getApiLevel();
-    // const bootloader = await DeviceInfo.getBootloader();
-    // const baseOs = await DeviceInfo.getBaseOs();
-    // const fingerprint = await DeviceInfo.getFingerprint();
-    // const tags = await DeviceInfo.getTags();
-    // const type = await DeviceInfo.getType();
-    // // build info
-    // const buildNumber = DeviceInfo.getBuildNumber();
-    // const bundleId = DeviceInfo.getBundleId();
-    // const appName = DeviceInfo.getApplicationName();
-    // const version = DeviceInfo.getVersion();
-    // const readableVersion = DeviceInfo.getReadableVersion();
+    // Retrieve device unique ID
+    const uniqueId = await getUniqueId();
 
-    // return {
-    //   deviceInfo: {
-    //     uniqueId,
-    //     manufacturer,
-    //     carrier, // Added carrier information
-    //     brand,
-    //     model,
-    //     emulator,
-    //     deviceId,
-    //     systemName,
-    //     systemVersion,
-    //     buildId,
-    //     ipAddress,
-    //     instanceId,
-    //     deviceName,
-    //     userAgent,
-    //     apiLevel,
-    //     bootloader,
-    //     baseOs,
-    //     fingerprint,
-    //     tags,
-    //     type,
-    //   },
-    //   buildInfo: {
-    //     bundleId,
-    //     buildNumber,
-    //     appName,
-    //     version,
-    //     readableVersion,
-    //   }
-    // };
+    // Retrieve manufacturer
+    const manufacturer = await getManufacturer();
+
+    // Make API call to fetch users
+    const response = await axios.get("https://jsonplaceholder.typicode.com/users");
+
+    // Extract users data from response
+    const users = response.data;
+
+    // Return device information and users data
+    return { uniqueId, manufacturer, users };
   } catch (error) {
-    console.error('Error retrieving device information:', error);
-    throw error; 
+    // Handle errors
+    console.error("Error retrieving device information:", error);
+    throw error;
   }
 }
